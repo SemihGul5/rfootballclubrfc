@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/main_color</item>
         <item name="android:statusBarColor">@color/main_color</item>
         <item name="colorOnSecondary">@color/white</item>
+        <item name="fontFamily">@font/roboto</item>
     </style>
 
     <style name="Theme.Rfootballclubrfc" parent="Base.Theme.Rfootballclubrfc" />

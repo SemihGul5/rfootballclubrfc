@@ -5,10 +5,10 @@ import com.abrebo.rfootballclubrfc.data.model.Team
 import retrofit2.http.GET
 
 interface TeamDao {
-    @GET("leagues_data.json")
+    @GET("leagues_data_for_app.json")
     suspend fun getLeagues():List<League>
 
-    @GET("all_teams_overall_with_cups.json")
+    @GET("teams.json")
     suspend fun getTeams():List<Team>
 
 

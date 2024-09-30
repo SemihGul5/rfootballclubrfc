@@ -3,10 +3,12 @@ package com.abrebo.rfootballclubrfc.ui.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.abrebo.rfootballclubrfc.data.model.League
 import com.abrebo.rfootballclubrfc.databinding.CardLeagueBinding
 import com.abrebo.rfootballclubrfc.databinding.FragmentAddListBinding
+import com.abrebo.rfootballclubrfc.ui.fragment.MainFragmentDirections
 import com.bumptech.glide.Glide
 
 
@@ -32,7 +34,10 @@ class LeagueAdapter(var mContext:Context, var leagueList: List<League>):Recycler
             .load(league.logo_url)
             .into(binding.imageViewLeague)
 
+
         binding.leagueCard.setOnClickListener {
+            val gecis=MainFragmentDirections.actionMainFragmentToLeagueFragment(league)
+            Navigation.findNavController(it).navigate(gecis)
 
         }
     }

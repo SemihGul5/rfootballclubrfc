@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_mainFragment_to_myListFragment"
             app:destination="@id/myListFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_leagueFragment"
+            app:destination="@id/leagueFragment" />
     </fragment>
     <fragment
         android:id="@+id/addListFragment"
@@ -27,4 +30,13 @@
         android:name="com.abrebo.rfootballclubrfc.ui.fragment.MyListFragment"
         android:label="fragment_my_list"
         tools:layout="@layout/fragment_my_list" />
+    <fragment
+        android:id="@+id/leagueFragment"
+        android:name="com.abrebo.rfootballclubrfc.ui.fragment.LeagueFragment"
+        android:label="fragment_league"
+        tools:layout="@layout/fragment_league" >
+        <argument
+            android:name="League"
+            app:argType="com.abrebo.rfootballclubrfc.data.model.League" />
+    </fragment>
 </navigation>
