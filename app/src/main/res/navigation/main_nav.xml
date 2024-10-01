@@ -38,5 +38,8 @@
         <argument
             android:name="League"
             app:argType="com.abrebo.rfootballclubrfc.data.model.League" />
+        <action
+            android:id="@+id/action_leagueFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

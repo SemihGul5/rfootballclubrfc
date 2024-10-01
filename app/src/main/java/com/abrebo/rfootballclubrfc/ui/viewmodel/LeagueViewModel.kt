@@ -10,6 +10,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.random.Random
 
 @HiltViewModel
 class LeagueViewModel @Inject constructor(var repository: Repository) : ViewModel() {
@@ -25,5 +26,13 @@ class LeagueViewModel @Inject constructor(var repository: Repository) : ViewMode
             })
         }
     }
+    fun getRandomTeam(filteredTeams: ArrayList<Team>, homeTeam: Team?, awayTeam: Team?): Team {
+        var selectedTeam: Team
+        do {
+            val randomIndex = Random.nextInt(filteredTeams.size)
+            selectedTeam = filteredTeams[randomIndex]
+        } while (selectedTeam == homeTeam || selectedTeam == awayTeam)
 
+        return selectedTeam
+    }
 }

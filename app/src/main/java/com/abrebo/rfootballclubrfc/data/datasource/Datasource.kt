@@ -18,5 +18,12 @@ class Datasource(var teamDao: TeamDao) {
             return@withContext teamDao.getTeams()
         }
 
+    suspend fun search(searchText:String):List<Team> = withContext(Dispatchers.IO){
+        val searhList=teamDao.getTeams().filter {
+            it.team_name.lowercase().contains(searchText.lowercase())
+        }
+        return@withContext searhList
+    }
+
 
 }

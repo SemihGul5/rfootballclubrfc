@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.abrebo.rfootballclubrfc.R
 import com.abrebo.rfootballclubrfc.databinding.FragmentMainBinding
 import com.abrebo.rfootballclubrfc.ui.adapter.LeagueAdapter
@@ -31,6 +32,9 @@ class MainFragment : Fragment() {
             binding.recyclerView.adapter=adapter
         }
 
+        binding.fabAddToList.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_mainFragment_to_addListFragment)
+        }
 
 
 
