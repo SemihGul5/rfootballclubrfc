@@ -6,7 +6,6 @@
     android:gravity="center_vertical"
     android:padding="8dp">
 
-
     <de.hdodenhof.circleimageview.CircleImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/imageView_Team_logo"
@@ -15,7 +14,6 @@
         app:civ_border_width="0dp"
         android:src="@drawable/ic_launcher_background"
         android:scaleType="centerCrop" />
-
 
     <LinearLayout
         android:layout_width="0dp"
@@ -42,9 +40,6 @@
             android:textSize="16sp" />
     </LinearLayout>
 
-
-
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,7 +62,7 @@
             android:src="@drawable/baseline_star_24"
             android:layout_marginStart="4dp" />
         <ImageView
-            android:id="@+id/add_team_to_my_list"
+            android:id="@+id/team_process"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="24dp"

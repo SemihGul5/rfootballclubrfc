@@ -14,22 +14,17 @@
             android:id="@+id/action_mainFragment_to_addListFragment"
             app:destination="@id/addListFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_myListFragment"
-            app:destination="@id/myListFragment" />
-        <action
             android:id="@+id/action_mainFragment_to_leagueFragment"
             app:destination="@id/leagueFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_myTeamListFragment"
+            app:destination="@id/myTeamListFragment" />
     </fragment>
     <fragment
         android:id="@+id/addListFragment"
         android:name="com.abrebo.rfootballclubrfc.ui.fragment.AddListFragment"
         android:label="fragment_add_list"
         tools:layout="@layout/fragment_add_list" />
-    <fragment
-        android:id="@+id/myListFragment"
-        android:name="com.abrebo.rfootballclubrfc.ui.fragment.MyListFragment"
-        android:label="fragment_my_list"
-        tools:layout="@layout/fragment_my_list" />
     <fragment
         android:id="@+id/leagueFragment"
         android:name="com.abrebo.rfootballclubrfc.ui.fragment.LeagueFragment"
@@ -42,4 +37,9 @@
             android:id="@+id/action_leagueFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/myTeamListFragment"
+        android:name="com.abrebo.rfootballclubrfc.ui.fragment.MyTeamListFragment"
+        android:label="fragment_my_team_list"
+        tools:layout="@layout/fragment_my_team_list" />
 </navigation>

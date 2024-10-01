@@ -35,6 +35,9 @@ class MainFragment : Fragment() {
         binding.fabAddToList.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_mainFragment_to_addListFragment)
         }
+        binding.fabMyList.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_mainFragment_to_myTeamListFragment)
+        }
 
 
 
