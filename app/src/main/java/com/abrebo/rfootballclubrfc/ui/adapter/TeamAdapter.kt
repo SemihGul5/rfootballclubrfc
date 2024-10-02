@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.abrebo.rfootballclubrfc.data.model.Team
 import com.abrebo.rfootballclubrfc.databinding.CardTeamLayoutBinding
-import com.abrebo.rfootballclubrfc.databinding.FragmentLeagueBinding
 import com.bumptech.glide.Glide
 
 class TeamAdapter(var mContext:Context, var teamList:List<Team>):RecyclerView.Adapter<TeamAdapter.TeamHolder>() {

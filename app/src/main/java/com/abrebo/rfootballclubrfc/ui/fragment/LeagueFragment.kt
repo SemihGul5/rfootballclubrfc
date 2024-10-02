@@ -15,6 +15,14 @@ import com.abrebo.rfootballclubrfc.ui.adapter.RandomTeamAdapter
 import com.abrebo.rfootballclubrfc.ui.adapter.TeamAdapter
 import com.abrebo.rfootballclubrfc.ui.viewmodel.LeagueViewModel
 import com.bumptech.glide.Glide
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,6 +35,8 @@ class LeagueFragment : Fragment() {
     private var randomTeams=ArrayList<Team>()
     private var homeTeam:Team?=null
     private var awayTeam:Team?=null
+    private lateinit var adView: AdView
+    private var interstitialAd: InterstitialAd? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val temp:LeagueViewModel by viewModels()
@@ -41,7 +51,22 @@ class LeagueFragment : Fragment() {
         binding.materialToolbar.title=league.league_name
         Glide.with(requireContext()).load(league.flag_url).into(binding.imageViewLeagueFlag)
         filteredTeams=ArrayList<Team>()
+        // Initialize Mobile Ads SDK
+        MobileAds.initialize(requireContext()) {}
+        // Setup Banner Ad
+        adView = AdView(requireContext())
+        adView.adUnitId = requireContext().getString(R.string.banner_ad_unit_id_league_fragment)
+        adView.setAdSize(AdSize.BANNER)
+        binding.adView.removeAllViews()
+        binding.adView.addView(adView)
 
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
+
+        // Load Interstitial Ad
+        loadInterstitialAd()
+
+        //observe team list
         viewModel.teamList.observe(viewLifecycleOwner){teams->
             filteredTeams = when {
                 league.league_name in listOf("Champions League", "Europa League", "Conference League") -> {
@@ -96,6 +121,7 @@ class LeagueFragment : Fragment() {
 
 
         binding.imageViewBack.setOnClickListener {
+            backButtonClicked(it)
             Navigation.findNavController(it).navigate(R.id.action_leagueFragment_to_mainFragment)
         }
 
@@ -115,6 +141,14 @@ class LeagueFragment : Fragment() {
 
         return binding.root
     }
+
+    private fun backButtonClicked(view:View){
+        if (interstitialAd!=null){
+            interstitialAd?.show(requireActivity())
+        }
+        Navigation.findNavController(view).navigate(R.id.action_leagueFragment_to_mainFragment)
+    }
+
     @SuppressLint("NotifyDataSetChanged")
     private fun addRandomTeam(isHomeTeam: Boolean) {
         randomTeams.clear()
@@ -130,8 +164,20 @@ class LeagueFragment : Fragment() {
             awayTeam?.let { randomTeams.add(it) }
             randomTeamAdapter.notifyDataSetChanged()
         }else{
-            Snackbar.make(requireView(), "Zaten 1 veya 2 takım var, rastgele takım seçmeye gerek yok !", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(requireView(), "Rastgele takım seçmeye gerek yok !", Snackbar.LENGTH_SHORT).show()
         }
     }
+    private fun loadInterstitialAd() {
+        val adRequest = AdRequest.Builder().build()
+        InterstitialAd.load(requireContext(), requireContext().getString(R.string.interstitial_ad_unit_id_all), adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdLoaded(ad: InterstitialAd) {
+                    interstitialAd = ad
+                }
 
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    interstitialAd = null
+                }
+            })
+    }
 }

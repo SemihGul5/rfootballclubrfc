@@ -11,11 +11,11 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.abrebo.rfootballclubrfc"
+        applicationId = "com.rfootballclubrfc"
         minSdk = 26
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 7
+        versionName = "2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -74,4 +74,5 @@ dependencies {
     //others
     implementation("com.github.bumptech.glide:glide:4.13.2")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
+    implementation("com.google.android.gms:play-services-ads:23.3.0")
 }

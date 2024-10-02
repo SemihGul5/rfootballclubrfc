@@ -47,10 +47,10 @@ class MyListAdapter (var mContext: Context,
         binding.teamProcess.setOnClickListener {
             if (page==PageType.ADDLIST){
                 viewModel.addTeam(team)
-                Snackbar.make(it,"Takım Listeye Eklendi!",Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(it,"${team.team_name} ${mContext.getString(R.string.added_to_list)}",Snackbar.LENGTH_SHORT).show()
             }else{
                 viewModel.deleteTeam(team)
-                Snackbar.make(it,"Takım Listeden Silindi!",Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(it,"${team.team_name} ${mContext.getString(R.string.removed_from_list)}",Snackbar.LENGTH_SHORT).show()
             }
         }
 

@@ -24,7 +24,11 @@
         android:id="@+id/addListFragment"
         android:name="com.abrebo.rfootballclubrfc.ui.fragment.AddListFragment"
         android:label="fragment_add_list"
-        tools:layout="@layout/fragment_add_list" />
+        tools:layout="@layout/fragment_add_list" >
+        <action
+            android:id="@+id/action_addListFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/leagueFragment"
         android:name="com.abrebo.rfootballclubrfc.ui.fragment.LeagueFragment"
@@ -41,5 +45,9 @@
         android:id="@+id/myTeamListFragment"
         android:name="com.abrebo.rfootballclubrfc.ui.fragment.MyTeamListFragment"
         android:label="fragment_my_team_list"
-        tools:layout="@layout/fragment_my_team_list" />
+        tools:layout="@layout/fragment_my_team_list" >
+        <action
+            android:id="@+id/action_myTeamListFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>
