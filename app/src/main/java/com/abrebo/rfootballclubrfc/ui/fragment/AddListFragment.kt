@@ -60,7 +60,9 @@ class AddListFragment : Fragment() {
             binding.recyclerViewAddList.adapter=adapter
         }
 
-        binding.imageViewBack.setOnClickListener {backButtonClicked(it)}
+        binding.imageViewBack.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_addListFragment_to_mainFragment)
+        }
 
         binding.searchEditText.addTextChangedListener(object :TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -82,12 +84,6 @@ class AddListFragment : Fragment() {
         return binding.root
     }
 
-    private fun backButtonClicked(view:View){
-        if (interstitialAd!=null){
-            interstitialAd?.show(requireActivity())
-        }
-        Navigation.findNavController(view).navigate(R.id.action_addListFragment_to_mainFragment)
-    }
     private fun loadInterstitialAd() {
         val adRequest = AdRequest.Builder().build()
         InterstitialAd.load(requireContext(), requireContext().getString(R.string.interstitial_ad_unit_id_all), adRequest,

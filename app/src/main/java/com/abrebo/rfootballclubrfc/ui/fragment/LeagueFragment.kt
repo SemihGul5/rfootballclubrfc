@@ -121,7 +121,6 @@ class LeagueFragment : Fragment() {
 
 
         binding.imageViewBack.setOnClickListener {
-            backButtonClicked(it)
             Navigation.findNavController(it).navigate(R.id.action_leagueFragment_to_mainFragment)
         }
 
@@ -140,13 +139,6 @@ class LeagueFragment : Fragment() {
 
 
         return binding.root
-    }
-
-    private fun backButtonClicked(view:View){
-        if (interstitialAd!=null){
-            interstitialAd?.show(requireActivity())
-        }
-        Navigation.findNavController(view).navigate(R.id.action_leagueFragment_to_mainFragment)
     }
 
     @SuppressLint("NotifyDataSetChanged")

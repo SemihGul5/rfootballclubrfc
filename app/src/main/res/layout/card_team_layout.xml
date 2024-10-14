@@ -38,6 +38,7 @@
             android:id="@+id/team_info_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="85 La Liga"
             android:textSize="16sp" />
     </LinearLayout>

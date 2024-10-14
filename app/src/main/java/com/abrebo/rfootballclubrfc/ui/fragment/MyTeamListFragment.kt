@@ -79,7 +79,7 @@ class MyTeamListFragment : Fragment() {
             addRandomTeam(false)
         }
         binding.imageViewBack.setOnClickListener {
-            backButtonClicked(it)
+            Navigation.findNavController(it).navigate(R.id.action_myTeamListFragment_to_mainFragment)
         }
 
 
@@ -87,12 +87,6 @@ class MyTeamListFragment : Fragment() {
 
 
         return binding.root
-    }
-    private fun backButtonClicked(view:View){
-        if (interstitialAd!=null){
-            interstitialAd?.show(requireActivity())
-        }
-        Navigation.findNavController(view).navigate(R.id.action_myTeamListFragment_to_mainFragment)
     }
     @SuppressLint("NotifyDataSetChanged")
     private fun addRandomTeam(isHomeTeam: Boolean) {
