@@ -20,21 +20,18 @@ class SplashActivity : AppCompatActivity() {
         val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
         binding.imageView.startAnimation(fadeIn)
 
-        // Animasyonun bitişini dinle
+
         fadeIn.setAnimationListener(object : android.view.animation.Animation.AnimationListener {
             override fun onAnimationStart(animation: android.view.animation.Animation?) {
-                // Animasyon başladığında yapılacaklar (gerekirse)
             }
 
             override fun onAnimationEnd(animation: android.view.animation.Animation?) {
-                // Animasyon tamamlandığında MainFragment'e yönlendir
                 val intent=Intent(this@SplashActivity,MainActivity::class.java)
                 startActivity(intent)
                 finish()
             }
 
             override fun onAnimationRepeat(animation: android.view.animation.Animation?) {
-                // Animasyon tekrarladığında yapılacaklar (genellikle gerekmez)
             }
         })
     }

@@ -24,7 +24,6 @@ class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
     private lateinit var viewModel: MainPageViewModel
     private lateinit var adView: AdView
-    private var interstitialAd: InterstitialAd? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,12 +49,12 @@ class MainFragment : Fragment() {
         adView.loadAd(adRequest)
 
         // Load Interstitial Ad
-        loadInterstitialAd()
+        viewModel.loadInterstitialAd()
         binding.fabAddToList.setOnClickListener { fabAddListClicked(it) }
         binding.fabMyList.setOnClickListener { fabMyListClicked(it) }
         // Observe the league list
         viewModel.leagueList.observe(viewLifecycleOwner) { leagueList ->
-            val adapter = LeagueAdapter(requireContext(), leagueList, interstitialAd,requireActivity())
+            val adapter = LeagueAdapter(requireContext(), leagueList, viewModel.interstitialAd,requireActivity())
             binding.recyclerView.adapter = adapter
         }
 
@@ -66,30 +65,13 @@ class MainFragment : Fragment() {
         return binding.root
     }
     private fun fabMyListClicked(view:View){
-        if (interstitialAd!=null){
-            interstitialAd?.show(requireActivity())
-        }
+        viewModel.showInterstitialAd(requireActivity())
         Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_myTeamListFragment)
     }
 
-    private fun loadInterstitialAd() {
-        val adRequest = AdRequest.Builder().build()
-        InterstitialAd.load(requireContext(), requireContext().getString(R.string.interstitial_ad_unit_id_all), adRequest,
-            object : InterstitialAdLoadCallback() {
-                override fun onAdLoaded(ad: InterstitialAd) {
-                    interstitialAd = ad
-                }
-
-                override fun onAdFailedToLoad(adError: LoadAdError) {
-                    interstitialAd = null
-                }
-            })
-    }
 
     private fun fabAddListClicked(view: View) {
-        if (interstitialAd!=null){
-            interstitialAd?.show(requireActivity())
-        }
+        viewModel.showInterstitialAd(requireActivity())
         Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_addListFragment)
     }
 }

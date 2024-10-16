@@ -36,7 +36,7 @@ class LeagueFragment : Fragment() {
     private var homeTeam:Team?=null
     private var awayTeam:Team?=null
     private lateinit var adView: AdView
-    private var interstitialAd: InterstitialAd? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val temp:LeagueViewModel by viewModels()
@@ -64,7 +64,7 @@ class LeagueFragment : Fragment() {
         adView.loadAd(adRequest)
 
         // Load Interstitial Ad
-        loadInterstitialAd()
+        viewModel.loadInterstitialAd()
 
         //observe team list
         viewModel.teamList.observe(viewLifecycleOwner){teams->
@@ -159,17 +159,5 @@ class LeagueFragment : Fragment() {
             Snackbar.make(requireView(), "Rastgele takım seçmeye gerek yok !", Snackbar.LENGTH_SHORT).show()
         }
     }
-    private fun loadInterstitialAd() {
-        val adRequest = AdRequest.Builder().build()
-        InterstitialAd.load(requireContext(), requireContext().getString(R.string.interstitial_ad_unit_id_all), adRequest,
-            object : InterstitialAdLoadCallback() {
-                override fun onAdLoaded(ad: InterstitialAd) {
-                    interstitialAd = ad
-                }
 
-                override fun onAdFailedToLoad(adError: LoadAdError) {
-                    interstitialAd = null
-                }
-            })
-    }
 }
