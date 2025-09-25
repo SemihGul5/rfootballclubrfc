@@ -1,5 +1,6 @@
 package com.abrebo.rfootballclubrfc.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -54,8 +55,10 @@ class AddListFragment : Fragment() {
         viewModel.loadInterstitialAd()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun observeViewModel() {
         viewModel.teamList.observe(viewLifecycleOwner) { teamList ->
+            binding.countText.text="Takım sayısı: "+ teamList.size.toString()
             val adapter = MyListAdapter(
                 mContext = requireContext(),
                 teamList = teamList,

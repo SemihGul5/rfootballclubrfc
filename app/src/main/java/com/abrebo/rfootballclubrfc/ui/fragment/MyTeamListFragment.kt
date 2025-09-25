@@ -43,6 +43,7 @@ class MyTeamListFragment : Fragment() {
         viewModel=temp
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         binding=FragmentMyTeamListBinding.inflate(inflater, container, false)
@@ -65,6 +66,7 @@ class MyTeamListFragment : Fragment() {
         //observe team list
         viewModel.myTeamList.observe(viewLifecycleOwner){
             filteredTeams = ArrayList(it)
+            binding.countText.text ="Takım sayısı: "+ it.size.toString()
             val adapter=MyListAdapter(requireContext(),it,viewModel,PageType.MYLIST,PageType.MAIN)
             binding.recyclerViewMyTeamList.adapter=adapter
         }

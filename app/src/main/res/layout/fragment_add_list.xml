@@ -29,7 +29,15 @@
         app:layout_constraintBottom_toBottomOf="@+id/materialToolbar2"
         app:layout_constraintStart_toStartOf="@+id/materialToolbar2"
         app:layout_constraintTop_toTopOf="@+id/materialToolbar2" />
-
+    <TextView
+        android:id="@+id/countText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewAddList"
         android:layout_width="0dp"
@@ -40,7 +48,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/countText"
         app:spanCount="1">
 
     </androidx.recyclerview.widget.RecyclerView>
