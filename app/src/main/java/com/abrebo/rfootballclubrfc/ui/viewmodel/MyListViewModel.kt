@@ -11,6 +11,7 @@ import androidx.lifecycle.viewModelScope
 import com.abrebo.rfootballclubrfc.R
 import com.abrebo.rfootballclubrfc.data.model.Team
 import com.abrebo.rfootballclubrfc.data.repo.Repository
+import com.abrebo.rfootballclubrfc.util.PageType
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
@@ -62,6 +63,20 @@ class MyListViewModel @Inject constructor(var repository: Repository,application
             }
         }
     }
+    fun addTeamPlayer(team:Team,player:PageType){
+        var boolean=false
+        myTeamList.value?.forEach {
+            if (it.team_image_url==team.team_image_url){
+                boolean=true
+            }
+        }
+        if (!boolean){
+            viewModelScope.launch {
+                repository.addMyTeamPlayer(team,player)
+            }
+        }
+    }
+
     fun deleteTeam(team: Team){
         viewModelScope.launch {
             repository.deleteMyTeam(team)
@@ -73,7 +88,17 @@ class MyListViewModel @Inject constructor(var repository: Repository,application
             myTeamList.value=repository.getMyTeams().sortedWith(compareByDescending { it.overall.toInt() })
         }
     }
-    fun getRandomTeam(filteredTeams: ArrayList<Team>, homeTeam: Team?, awayTeam: Team?): Team {
+    fun getRandomTeam(filteredTeams: ArrayList<Team>, homeTeam: Team?, awayTeam: Team?): Team? {
+        val availableTeams = filteredTeams.filter { it != homeTeam && it != awayTeam }
+
+        return if (availableTeams.isNotEmpty()) {
+            availableTeams.random()
+        } else {
+            null // seçilebilecek başka takım kalmamış
+        }
+    }
+
+   /* fun getRandomTeam(filteredTeams: ArrayList<Team>, homeTeam: Team?, awayTeam: Team?): Team {
         var selectedTeam: Team
         do {
             val randomIndex = Random.nextInt(filteredTeams.size)
@@ -81,7 +106,7 @@ class MyListViewModel @Inject constructor(var repository: Repository,application
         } while (selectedTeam == homeTeam || selectedTeam == awayTeam)
 
         return selectedTeam
-    }
+    }*/
     fun loadInterstitialAd() {
         val adRequest = AdRequest.Builder().build()
         InterstitialAd.load(context, context.getString(R.string.interstitial_ad_unit_id_all), adRequest,

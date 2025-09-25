@@ -65,7 +65,7 @@ class MyTeamListFragment : Fragment() {
         //observe team list
         viewModel.myTeamList.observe(viewLifecycleOwner){
             filteredTeams = ArrayList(it)
-            val adapter=MyListAdapter(requireContext(),it,viewModel,PageType.MYLIST)
+            val adapter=MyListAdapter(requireContext(),it,viewModel,PageType.MYLIST,PageType.MAIN)
             binding.recyclerViewMyTeamList.adapter=adapter
         }
         randomTeamAdapter=RandomTeamAdapter(requireContext(),randomTeams)
@@ -90,21 +90,30 @@ class MyTeamListFragment : Fragment() {
     }
     @SuppressLint("NotifyDataSetChanged")
     private fun addRandomTeam(isHomeTeam: Boolean) {
-        randomTeams.clear()
-
-        if (filteredTeams.size > 2) {
-            if (isHomeTeam) {
-                homeTeam = viewModel.getRandomTeam(filteredTeams as ArrayList<Team>, homeTeam, awayTeam)
-            } else {
-                awayTeam = viewModel.getRandomTeam(filteredTeams as ArrayList<Team>, homeTeam, awayTeam)
-            }
-
-            homeTeam?.let { randomTeams.add(it) }
-            awayTeam?.let { randomTeams.add(it) }
-            randomTeamAdapter.notifyDataSetChanged()
-        }else{
-            Snackbar.make(requireView(), "Rastgele takım seçmeye gerek yok !", Snackbar.LENGTH_SHORT).show()
+        if (filteredTeams.size < 2) {
+            Snackbar.make(requireView(), "Rastgele takım seçmeye gerek yok!", Snackbar.LENGTH_SHORT).show()
+            return
         }
+
+        val newTeam = viewModel.getRandomTeam(filteredTeams as ArrayList<Team>, homeTeam, awayTeam)
+
+        if (newTeam == null) {
+            Snackbar.make(requireView(), "Seçilebilecek başka takım kalmadı!", Snackbar.LENGTH_SHORT).show()
+            return
+        }
+
+        if (isHomeTeam) {
+            homeTeam = newTeam
+        } else {
+            awayTeam = newTeam
+        }
+
+        randomTeams.clear()
+        homeTeam?.let { randomTeams.add(it) }
+        awayTeam?.let { randomTeams.add(it) }
+
+        randomTeamAdapter.notifyDataSetChanged()
     }
+
 
 }

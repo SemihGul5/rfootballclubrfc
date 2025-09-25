@@ -3,6 +3,7 @@ package com.abrebo.rfootballclubrfc.data.repo
 import com.abrebo.rfootballclubrfc.data.datasource.Datasource
 import com.abrebo.rfootballclubrfc.data.model.League
 import com.abrebo.rfootballclubrfc.data.model.Team
+import com.abrebo.rfootballclubrfc.util.PageType
 
 class Repository(var datasource: Datasource) {
     suspend fun getLeagues():List<League> = datasource.getLeagues()
@@ -11,4 +12,7 @@ class Repository(var datasource: Datasource) {
     suspend fun getMyTeams():List<Team> = datasource.getMyTeams()
     suspend fun addMyTeam(team: Team) = datasource.addMyTeam(team)
     suspend fun deleteMyTeam(team: Team) = datasource.deleteMyTeam(team)
+
+    suspend fun addMyTeamPlayer(team: Team,player:PageType) = datasource.addMyTeam(team)
+
 }

@@ -16,7 +16,8 @@ import com.google.android.material.snackbar.Snackbar
 class MyListAdapter (var mContext: Context,
                      var teamList:List<Team>,
                      var viewModel: MyListViewModel,
-                     var page:PageType): RecyclerView.Adapter<MyListAdapter.TeamHolder>() {
+                     var page:PageType,
+                     var pageType2:PageType?): RecyclerView.Adapter<MyListAdapter.TeamHolder>() {
 
     inner class TeamHolder(var binding: CardTeamListLayoutBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -46,7 +47,13 @@ class MyListAdapter (var mContext: Context,
 
         binding.teamProcess.setOnClickListener {
             if (page==PageType.ADDLIST){
-                viewModel.addTeam(team)
+                if (pageType2==PageType.MAIN){
+                    viewModel.addTeam(team)
+                }else if (pageType2==PageType.P1_ADD_LIST){
+                    viewModel.addTeam(team)
+                }else if (pageType2==PageType.P2_ADD_LIST){
+                    viewModel.addTeam(team)
+                }
                 Snackbar.make(it,"${team.team_name} ${mContext.getString(R.string.added_to_list)}",Snackbar.LENGTH_SHORT).show()
             }else{
                 viewModel.deleteTeam(team)

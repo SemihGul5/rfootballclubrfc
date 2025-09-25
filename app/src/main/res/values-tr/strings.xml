@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FC 25 | Rastgele Takım</string>
+    <string name="app_name">FC 26 | Rastgele Takım</string>
     <string name="add_to_list">Listeme Ekle</string>
     <string name="my_list">Listem</string>
     <string name="search">Takım Ara</string>
@@ -8,11 +8,9 @@
     <string name="away">"Deplasman"</string>
     <string name="added_to_list">"Listeye Eklendi!"</string>
     <string name="removed_from_list">"Listeden Silindi!"</string>
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/9214589741</string>
     <string name="banner_ad_unit_id_add_list_fragment">ca-app-pub-4667560937795938/5877846006</string>
     <string name="banner_ad_unit_id_league_fragment">ca-app-pub-4667560937795938/8900229629</string>
     <string name="banner_ad_unit_id_main_fragment">ca-app-pub-4667560937795938/8820338575</string>
     <string name="banner_ad_unit_id_my_team_list_fragment">ca-app-pub-4667560937795938/5714194472</string>
-    <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
     <string name="interstitial_ad_unit_id_all">ca-app-pub-4667560937795938/7304911071</string>
 </resources>

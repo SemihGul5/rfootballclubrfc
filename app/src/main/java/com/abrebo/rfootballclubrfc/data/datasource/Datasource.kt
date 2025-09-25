@@ -4,6 +4,8 @@ import com.abrebo.rfootballclubrfc.data.model.League
 import com.abrebo.rfootballclubrfc.data.model.Team
 import com.abrebo.rfootballclubrfc.retrofit.TeamDao
 import com.abrebo.rfootballclubrfc.room.DbDao
+import com.abrebo.rfootballclubrfc.room.DbPlayer1
+import com.abrebo.rfootballclubrfc.util.PageType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -37,6 +39,11 @@ class Datasource(var teamDao: TeamDao,var dbDao: DbDao) {
     suspend fun deleteMyTeam(team: Team){
         dbDao.deleteTeam(team)
     }
-
-
+    // turnuva için
+    suspend fun addMyTeamsPlayer(team: List<Team>){
+        dbDao.addTeams(team)
+    }
+    suspend fun deleteMyTeamsPlayer(team: List<Team>){
+        dbDao.deleteTeams(team)
+    }
 }

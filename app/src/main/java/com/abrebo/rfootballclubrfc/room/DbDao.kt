@@ -16,4 +16,10 @@ interface DbDao {
 
     @Delete
     suspend fun deleteTeam(team: Team)
+
+    @Insert
+    suspend fun addTeams(teams: List<Team>)
+
+    @Delete
+    suspend fun deleteTeams(teams: List<Team>)
 }

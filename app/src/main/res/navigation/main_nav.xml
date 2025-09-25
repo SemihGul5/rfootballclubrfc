@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_mainFragment_to_myTeamListFragment"
             app:destination="@id/myTeamListFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_turnuvaOlusturFragment"
+            app:destination="@id/turnuvaOlusturFragment" />
     </fragment>
     <fragment
         android:id="@+id/addListFragment"
@@ -28,6 +31,9 @@
         <action
             android:id="@+id/action_addListFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <argument
+            android:name="pageType"
+            app:argType="com.abrebo.rfootballclubrfc.util.PageType" />
     </fragment>
     <fragment
         android:id="@+id/leagueFragment"
@@ -49,5 +55,13 @@
         <action
             android:id="@+id/action_myTeamListFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/turnuvaOlusturFragment"
+        android:name="com.abrebo.rfootballclubrfc.ui.fragment.TurnuvaOlusturFragment"
+        android:label="TurnuvaOlusturFragment" >
+        <action
+            android:id="@+id/action_turnuvaOlusturFragment_to_addListFragment"
+            app:destination="@id/addListFragment" />
     </fragment>
 </navigation>

@@ -8,14 +8,14 @@ plugins {
 
 android {
     namespace = "com.abrebo.rfootballclubrfc"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.rfootballclubrfc"
         minSdk = 26
-        targetSdk = 34
-        versionCode = 10
-        versionName = "2.3"
+        targetSdk = 35
+        versionCode = 14
+        versionName = "3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.cardview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
