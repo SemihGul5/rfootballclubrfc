@@ -58,7 +58,6 @@ class AddListFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun observeViewModel() {
         viewModel.teamList.observe(viewLifecycleOwner) { teamList ->
-            binding.countText.text="Takım sayısı: "+ teamList.size.toString()
             val adapter = MyListAdapter(
                 mContext = requireContext(),
                 teamList = teamList,
